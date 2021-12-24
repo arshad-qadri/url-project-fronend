@@ -1,34 +1,19 @@
-import { Box, Button, Typography } from "@mui/material";
 import React from "react";
 import { NavLink } from "react-router-dom";
 
 const Header = () => {
   return (
     <>
-      <Box
-        bgcolor="primary.main"
-        p={2}
-        display="flex"
-        justifyContent="space-around"
-        height="8vh"
-      >
-        <Typography textAlign="center" color="white">
-          <Typography
-            variant="h4"
-            fontFamily="Pushster, cursive"
-            component="h4"
-          >
-            URL &nbsp; Source
-          </Typography>
-        </Typography>
-        <Box>
-          <NavLink to="/create">
-            <Button variant="contained" color="success">
+      <div className="bg-blue-600 text-center py-4 w-full ">
+        <div className="container mx-auto flex justify-between items-center px-5 ">
+          <h2 className="text-white text-2xl font-bold">URL Source</h2>
+          <NavLink exact to="/create">
+            <button className="bg-white px-5 py-1 rounded shadow hover:shadow-xl transition-all ">
               Create
-            </Button>
+            </button>
           </NavLink>
-        </Box>
-      </Box>
+        </div>
+      </div>
     </>
   );
 };
