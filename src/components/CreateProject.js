@@ -1,13 +1,36 @@
-import React from "react";
-import { useDispatch } from "react-redux";
-import { create } from "../redux/actions";
+import React, { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { useParams } from "react-router-dom";
+import { NavLink, useHistory } from "react-router-dom";
+import { cancel, create, update } from "../redux/actions";
 
 const CreateProject = () => {
+  const [title, setTitle] = useState("");
+  const [url, setUrl] = useState("");
   const dispatch = useDispatch();
+  const history = useHistory();
+  const params = useParams();
+  const find = useSelector((state) => state.data.find);
   const handleCreate = () => {
     console.log("click");
-    dispatch(create());
-  }
+    dispatch(create(title, url, history));
+  };
+
+  useEffect(() => {
+    if (find) {
+      setTitle(find.title);
+      setUrl(find.url);
+    }
+  }, [find]);
+  const handleUpdate = () => {
+    dispatch(update(params.id, title, url, history));
+  };
+  const handleCancel = () => {
+    setUrl("");
+    setTitle("");
+    dispatch(cancel());
+  };
+  console.log("pp", params);
   return (
     <>
       <div
@@ -20,19 +43,33 @@ const CreateProject = () => {
               type="text"
               className="border w-full h-16 pl-6 focus:border-blue-600 outline-0 rounded-lg"
               placeholder="Enter Title"
+              value={title}
+              onChange={(e) => setTitle(e.target.value)}
             />
 
             <input
               type="text"
               className="border w-full h-16 pl-6 focus:border-blue-600 outline-0 rounded-lg"
               placeholder="Enter URL"
+              value={url}
+              onChange={(e) => setUrl(e.target.value)}
             />
-            <button
-              onClick={handleCreate}
-              className="outline-0 bg-blue-600 text-white  py-2 px-5 rounded shadow ml-auto hover:shadow-xl transition-all"
-            >
-              Create
-            </button>
+            <div className="flex w-full justify-end gap-x-3">
+              <NavLink to="/">
+                <button
+                  onClick={handleCancel}
+                  className="outline-0 bg-blue-200 text-white  py-2 px-5 rounded shadow  hover:shadow-xl transition-all"
+                >
+                  Cancel
+                </button>
+              </NavLink>
+              <button
+                onClick={find ? handleUpdate : handleCreate}
+                className="outline-0 bg-blue-600 text-white  py-2 px-5 rounded shadow  hover:shadow-xl transition-all"
+              >
+                {find ? "Update" : "Create"}
+              </button>
+            </div>
           </div>
         </div>
       </div>

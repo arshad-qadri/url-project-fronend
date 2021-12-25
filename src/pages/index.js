@@ -12,6 +12,7 @@ const index = () => {
           <Switch>
             <Route exact path="/" component={Home} />
             <Route exact path="/create" component={CreateProject} />
+            <Route exact path="/edit/:id" component={CreateProject} />
           </Switch>
         </Layout>
       </Route>
