@@ -41,8 +41,7 @@ const Home = () => {
         style={{ minHeight: "calc(100vh - 104px)" }}
       >
         <div className="container mx-auto py-3 px-2 flex flex-col gap-y-4">
-          {data?.data &&
-            data?.data.length > 0 &&
+          {data?.data.length > 0 ? (
             data?.data.map((item) => (
               <div className="bg-white p-3 shadow rounded-lg" key={item._id}>
                 <div className="res-flex-col flex items-center justify-between">
@@ -53,11 +52,11 @@ const Home = () => {
                     </div>
                   </div>
                   <div className="flex items-center justify-start gap-x-2">
-                    <NavLink to={item.url} target="_blank">
+                    <a href={item.url} target="_blank">
                       <button className="outline-0 bg-blue-600 text-white  py-2 px-5 rounded shadow ml-auto hover:shadow-xl transition-all">
                         Open
                       </button>
-                    </NavLink>
+                    </a>
                     <button
                       onClick={() => handleEdit(item._id)}
                       className="outline-0 text-2xl bg-green-600 text-white  py-2 px-5 rounded shadow ml-auto hover:shadow-xl transition-all"
@@ -73,7 +72,10 @@ const Home = () => {
                   </div>
                 </div>
               </div>
-            ))}
+            ))
+          ) : (
+            <p className="text-center font-bold">Not any project</p>
+          )}
         </div>
       </div>
       <ToastContainer />
