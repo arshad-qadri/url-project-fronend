@@ -1,16 +1,16 @@
 import axios from "axios";
-import { CANCEL, CREATE_URL, FIND_ONE, GET_DATA } from "../types";
+import { CANCEL, CREATE_URL, DELETE, ERROR, FIND_ONE, GET_DATA } from "../types";
 
 export const getData = () => {
   return async (dispatch) => {
     await axios
-      .post("https://lzgdu.sse.codesandbox.io/api/all")
+      .post("https://lzgdu.sse.codesandbox.io/api/all", {})
       .then((res) => {
         dispatch({ type: GET_DATA, payload: res.data });
         console.log("res", res.data);
       })
       .catch((err) => {
-        dispatch({ type: GET_DATA, payload: err.response });
+        dispatch({ type: ERROR, payload: err.response });
         console.log("err", err.response);
       });
   };
@@ -29,7 +29,7 @@ export const create = (title, url, history) => {
         history.push("/");
       })
       .catch((err) => {
-        dispatch({ type: CREATE_URL, payload: err.response });
+        dispatch({ type: ERROR, payload: err.response });
         console.log("err", err.response);
       });
   };
@@ -44,7 +44,7 @@ export const findOne = (id, history) => {
         history.push(`/edit/${id}`);
       })
       .catch((err) => {
-        dispatch({ type: FIND_ONE, payload: err.response });
+        dispatch({ type: ERROR, payload: err.response });
         console.log("err", err.response);
       });
   };
@@ -62,7 +62,7 @@ export const update = (id, title, url, history) => {
         history.push(`/`);
       })
       .catch((err) => {
-        dispatch({ type: FIND_ONE, payload: err.response });
+        dispatch({ type: ERROR, payload: err.response });
         console.log("err", err.response);
       });
   };
@@ -72,11 +72,11 @@ export const deleteUrl = (id) => {
     await axios
       .post(`https://lzgdu.sse.codesandbox.io/api/delete/${id}`, {})
       .then((res) => {
-        // dispatch({ type: FIND_ONE, payload: res.data });
+        dispatch({ type: DELETE, payload: res.data });
         console.log("res", res);
       })
       .catch((err) => {
-        // dispatch({ type: FIND_ONE, payload: err.response });
+        dispatch({ type: DELETE, payload: err.response });
         console.log("err", err.response);
       });
   };
@@ -84,5 +84,6 @@ export const deleteUrl = (id) => {
 export const cancel = () => {
   return {
     type: CANCEL,
+    payload:null
   };
 };

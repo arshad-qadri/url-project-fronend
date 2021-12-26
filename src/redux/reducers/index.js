@@ -1,9 +1,10 @@
-import {  FIND_ONE, GET_DATA } from "../types";
+import { CANCEL, DELETE, ERROR, FIND_ONE, GET_DATA } from "../types";
 
 const initState = {
   data: null,
   error: null,
   find: null,
+  msg: null,
 };
 
 const reducers = (state = initState, action) => {
@@ -14,18 +15,33 @@ const reducers = (state = initState, action) => {
         data: action.payload,
         error: null,
       };
+
     case FIND_ONE:
       return {
         ...state,
         find: action.payload,
         error: null,
       };
-    case FIND_ONE:
+    case DELETE:
       return {
         ...state,
-        find: null,
+        msg: action.payload,
         error: null,
       };
+    case CANCEL:
+      return {
+        ...state,
+        find: action.payload,
+      };
+    case ERROR: {
+      return {
+        ...state,
+        data: null,
+        find: null,
+        error: action.payload,
+      };
+    }
+
     default:
       return state;
   }

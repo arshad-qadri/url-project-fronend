@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import { NavLink, useHistory } from "react-router-dom";
 import { cancel, create, update } from "../redux/actions";
+import { ToastContainer, toast } from "react-toastify";
 
 const CreateProject = () => {
   const [title, setTitle] = useState("");
@@ -14,6 +15,7 @@ const CreateProject = () => {
   const handleCreate = () => {
     console.log("click");
     dispatch(create(title, url, history));
+    toast.success("Created Successfully");
   };
 
   useEffect(() => {
@@ -24,6 +26,7 @@ const CreateProject = () => {
   }, [find]);
   const handleUpdate = () => {
     dispatch(update(params.id, title, url, history));
+    toast.success("Updated Successfully");
   };
   const handleCancel = () => {
     setUrl("");
@@ -73,6 +76,7 @@ const CreateProject = () => {
           </div>
         </div>
       </div>
+      <ToastContainer />
     </>
   );
 };
