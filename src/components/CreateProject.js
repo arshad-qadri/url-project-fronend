@@ -14,7 +14,7 @@ const CreateProject = () => {
   const find = useSelector((state) => state.data.find);
   const handleCreate = () => {
     console.log("click");
-    dispatch(create(title, url, history));
+    dispatch(create(title.trim(), url.trim(), history));
     toast.success("Created Successfully");
   };
 

@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { NavLink } from "react-router-dom";
+import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
 import { ToastContainer, toast } from "react-toastify";
 
 const Auth = () => {
@@ -7,14 +8,16 @@ const Auth = () => {
   const [inpPass, setInpPass] = useState("");
   const email = "arshad@gmail.com";
   const password = "arshad321";
+  const history = useHistory();
 
   const handleAccess = () => {
     if (!inpEmail || !inpPass) {
       toast.error(" Enter Email And Password");
     } else {
-        if (email === inpEmail && password === inpPass) {
-          localStorage.setItem("auth", true); 
-          toast.success("You Get Access");          
+      if (email === inpEmail && password === inpPass) {
+        localStorage.setItem("auth", true);
+        toast.success("You Get Access");
+        history.push("/");
       } else {
         toast.error("Email or Passowrd Wrong");
       }
