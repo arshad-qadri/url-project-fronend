@@ -1,5 +1,4 @@
 import React, { useEffect } from "react";
-import { NavLink } from "react-router-dom";
 import { FaEdit } from "react-icons/fa";
 import { MdDelete } from "react-icons/md";
 import { useSelector } from "react-redux";
@@ -11,7 +10,6 @@ import { ToastContainer, toast } from "react-toastify";
 const Home = () => {
   const data = useSelector((state) => state?.data);
   const auth = localStorage.getItem("auth");
-  console.log(auth);
   const dispatch = useDispatch();
   const history = useHistory();
   useEffect(() => {
@@ -41,7 +39,7 @@ const Home = () => {
         style={{ minHeight: "calc(100vh - 104px)" }}
       >
         <div className="container mx-auto py-3 px-2 flex flex-col gap-y-4">
-          {data?.data.length > 0 ? (
+          {data?.data?.length > 0 ? (
             data?.data.map((item) => (
               <div className="bg-white p-3 shadow rounded-lg" key={item._id}>
                 <div className="res-flex-col flex items-center justify-between">
