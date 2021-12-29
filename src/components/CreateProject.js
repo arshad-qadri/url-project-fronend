@@ -13,7 +13,6 @@ const CreateProject = () => {
   const params = useParams();
   const find = useSelector((state) => state.data.find);
   const handleCreate = () => {
-    console.log("click");
     dispatch(create(title.trim(), url.trim(), history));
     toast.success("Created Successfully");
   };
@@ -33,7 +32,6 @@ const CreateProject = () => {
     setTitle("");
     dispatch(cancel());
   };
-  console.log("pp", params);
   return (
     <>
       <div

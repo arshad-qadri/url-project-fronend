@@ -1,5 +1,5 @@
 import React from "react";
-import { Route, Switch } from "react-router-dom";
+import { Route, Switch ,Redirect} from "react-router-dom";
 import CreateProject from "../components/CreateProject";
 import Layout from "../layout/Layout";
 import Auth from "./Auth";
@@ -21,6 +21,7 @@ const index = () => {
             <Route exact path="/create" component={CreateProject} />
             <Route exact path="/edit/:id" component={CreateProject} />
             <Route exact path="/auth" component={Auth} />
+            <Redirect to="/"/>
           </Switch>
         </Layout>
       </Route>

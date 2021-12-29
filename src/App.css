@@ -7,3 +7,38 @@
     align-items: flex-start !important;
   }
 }
+.mainloader{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  padding-top: 50px;
+
+}
+.mainloader .loader {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  border: 10px solid #306cec;
+  border-top: 10px solid transparent;
+  border-bottom: 10px solid transparent;
+  box-sizing: border-box;
+  animation: rotate 1s ease infinite;
+}
+.mainloader p {
+  margin-top: 5px;
+  font-weight: 600;
+  color: #306cec;
+}
+
+@keyframes rotate {
+  0% {
+    transform: rotate(180deg);
+  }
+  50% {
+    transform: rotate(270deg) scale(1.1);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
