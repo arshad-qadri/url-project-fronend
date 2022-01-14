@@ -4,7 +4,7 @@ const LoginLayout = ({ children, ...props }) => {
   return (
     <div
       className="relative bg-white overflow-hidden"
-      style={{ minHeight: "100vh" }}
+      style={{ height: "100vh" }}
     >
       <div className="top-baloon"></div>
       <div className="bottom-baloon"></div>
@@ -16,8 +16,8 @@ const LoginLayout = ({ children, ...props }) => {
           >
             <div className="flex items-center flex-grow flex-shrink-0 lg:flex-grow-0">
               <div className="flex items-center justify-between w-full md:w-auto">
-                <a href="/#">
-                  <span className="block xl:inline text-2xl font-bold text-indigo-600">
+                <a href="/">
+                  <span className="block xl:inline text-2xl font-bold text-indigo-600 logo">
                     URlSource
                   </span>
                 </a>
@@ -25,12 +25,12 @@ const LoginLayout = ({ children, ...props }) => {
             </div>
           </nav>
           <svg
-            className="hidden lg:block absolute right-0 inset-y-0 h-full w-56 text-white transform translate-x-1/2"
+            className="hidden lg:block absolute right-0 inset-y-0  w-56 text-white transform translate-x-1/2"
             fill="currentColor"
             viewBox="0 0 100 100"
             preserveAspectRatio="none"
             aria-hidden="true"
-            style={{ height: "100vh" }}
+            style={{ height: "114vh" }}
           >
             <polygon points="50,0 100,0 50,100 0,100" />
           </svg>

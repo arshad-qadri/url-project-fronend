@@ -6,3 +6,4 @@ export const FIND_ONE = "FIND_ONE";
 export const UPDATE = "UPDATE";
 export const DELETE = "DELETE";
 export const CANCEL = "CANCEL";
+export const REGISTER_USER = "REGISTER_USER";
