@@ -22,7 +22,7 @@ export const getData = () => {
   return async dispatch => {
     dispatch(loadingAct(true));
     await axios
-      .post("https://lzgdu.sse.codesandbox.io/api/all", {})
+      .post("https://lzgdu-5000.csb.app/api/all", {})
       .then(res => {
         dispatch({ type: GET_DATA, payload: res.data });
         dispatch(loadingAct(false));
@@ -39,7 +39,7 @@ export const create = (title, url, history) => {
   return async dispatch => {
     dispatch(loadingAct(true));
     await axios
-      .post("https://lzgdu.sse.codesandbox.io/api/url", {
+      .post("https://lzgdu-5000.csb.app/api/url", {
         title: title,
         url: url,
       })
@@ -60,7 +60,7 @@ export const findOne = (id, history) => {
   return async dispatch => {
     dispatch(loadingAct(true));
     await axios
-      .post(`https://lzgdu.sse.codesandbox.io/api/${id}`, {})
+      .post(`https://lzgdu-5000.csb.app/api/${id}`, {})
       .then(res => {
         dispatch({ type: FIND_ONE, payload: res.data });
         history.push(`/edit/${id}`);
@@ -78,7 +78,7 @@ export const update = (id, title, url, history) => {
   return async dispatch => {
     dispatch(loadingAct(true));
     await axios
-      .post(`https://lzgdu.sse.codesandbox.io/api/update/${id}`, {
+      .post(`https://lzgdu-5000.csb.app/api/update/${id}`, {
         title: title,
         url: url,
       })
@@ -99,7 +99,7 @@ export const deleteUrl = id => {
   return async dispatch => {
     dispatch(loadingAct(true));
     await axios
-      .post(`https://lzgdu.sse.codesandbox.io/api/delete/${id}`, {})
+      .post(`https://lzgdu-5000.csb.app/api/delete/${id}`, {})
       .then(res => {
         // dispatch({ type: DELETE, payload: res.data });
         dispatch(getData());
