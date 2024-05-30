@@ -1,4 +1,4 @@
-import { CANCEL, DELETE, ERROR, FIND_ONE, GET_DATA, LOADING } from "../types";
+import { CANCEL, DELETE, ERROR, FIND_ONE, GET_DATA, GET_USER, LOADING, LOGIN_USER } from "../types";
 
 const initState = {
   data: null,
@@ -6,6 +6,7 @@ const initState = {
   find: null,
   msg: null,
   loading: false,
+  user:null
 };
 
 const reducers = (state = initState, action) => {
@@ -53,6 +54,20 @@ const reducers = (state = initState, action) => {
       };
     }
 
+    case LOGIN_USER:{
+      return {
+        ...state,
+        token: action.payload?.access_token,
+        error: null,
+      };
+    }
+    case GET_USER:{
+      return {
+        ...state,
+        user: action.payload,
+        error: null,
+      }
+    }
     default:
       return state;
   }

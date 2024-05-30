@@ -9,6 +9,7 @@ import {
   LOADING,
   UPDATE,
 } from "../types";
+import { apiBaseUrl } from "../../variables";
 
 // Loader
 export const loadingAct = isLoading => {
@@ -22,12 +23,17 @@ export const getData = () => {
   return async dispatch => {
     dispatch(loadingAct(true));
     await axios
-      .post("https://lzgdu-5000.csb.app/api/all", {})
+      .get(`${apiBaseUrl}/urlSources`, {headers:{"Authorization":`Bearer ${localStorage.getItem("userToken")}`}})
       .then(res => {
         dispatch({ type: GET_DATA, payload: res.data });
         dispatch(loadingAct(false));
       })
       .catch(err => {
+        if(err.response.data?.message==="unAuthorized"){
+          localStorage.removeItem("userToken")
+          window.location.href="/login"
+      }
+      console.log(err.message);
         dispatch({ type: ERROR, payload: err.response });
         dispatch(loadingAct(false));
       });

@@ -1,9 +1,10 @@
 import axios from "axios";
+import { apiBaseUrl } from "../../variables";
 
 export const register_action = (data) => {
   return async (dispatch) => {
     await axios
-      .post("https://urlsource-backend.vercel.app/api/register", {
+      .post(`${apiBaseUrl}/register`, {
         name: "text",
         email: "text@gmail.com",
         password: "123",
